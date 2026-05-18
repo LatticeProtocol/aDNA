@@ -2,12 +2,12 @@
 type: skill
 skill_type: agent
 created: 2026-03-08
-updated: 2026-03-08
+updated: 2026-05-18
 status: active
 category: development
 trigger: When a lattice needs to be published to a registry, pulled from a registry, or composed with another lattice
-last_edited_by: agent_init
-tags: [skill, registry, federation, publish]
+last_edited_by: agent_stanley
+tags: [skill, registry, federation, publish, lattice_object]
 
 requirements:
   tools: [latlab CLI, lattice_validate.py]
@@ -20,6 +20,8 @@ requirements:
 ## Overview
 
 Agent recipe for the publish/pull/compose workflow. Covers validating a lattice for federation readiness, publishing it to a registry, pulling published lattices, and composing lattices together.
+
+> **Note**: This skill publishes a `.lattice.yaml` *object* to a registry via `latlab`. To publish a *vault* to its GitHub remote, see `skill_vault_publish.md`.
 
 ## Trigger
 
@@ -59,7 +61,7 @@ Run structural and semantic validation:
 
 ```bash
 # Validate the lattice file
-cd ~/lattice/lattice-protocol-repo
+cd ~/lattice/lattice-protocol
 python -c "
 from objects.lattices.tools.lattice_validate import validate_lattice_file
 result = validate_lattice_file('path/to/lattice.lattice.yaml')
@@ -76,7 +78,7 @@ for warning in result.warnings:
 Verify all 6 federation readiness checks pass:
 
 ```bash
-cd ~/lattice/lattice-protocol-repo
+cd ~/lattice/lattice-protocol
 python -c "
 from objects.lattices.federation import check_federation_readiness
 import yaml
@@ -175,6 +177,11 @@ The remaining 7 (hello_world, learning_path, sales_pipeline, etc.) are instructi
 
 ## Related
 
+- **Vault publish (NEW v7.0)**: `how/skills/skill_vault_publish.md` — publish a *vault* to its GitHub remote (distinct from this registry-publish skill)
+- **Git remote setup (NEW v7.0)**: `how/skills/skill_git_remote_setup.md` — first-time GitHub remote configuration
+- **Publish tarball (NEW v7.0)**: `how/skills/skill_publish_tarball.md` — offline-shipping artifact for non-GitHub channels
+- **Deploy hook (NEW v7.0)**: `how/skills/skill_deploy.md` — installs the pre-push sanitization hook (used by `skill_vault_publish`)
+- **Publish-skill naming decision**: `what/decisions/adr_010_publish_skill_naming.md` — why these are separate skills
 - **Registry template**: `how/templates/template_registry.md`
 - **Lattice standard**: `what/lattices/standard_lattice.md`
 - **Skills Protocol**: `how/skills/AGENTS.md`
