@@ -1480,4 +1480,4 @@ This appendix maps every design decision to its location in the standard, ensuri
 
 ---
 
-*End of aDNA Universal Standard v2.0*
+*End of aDNA Universal Standard v2.2*

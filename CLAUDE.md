@@ -1,13 +1,13 @@
 ---
 type: governance
-version: "6.0"
+version: "7.0"
 token_estimate: ~3000
-updated: 2026-04-03
-last_edited_by: agent_init
+updated: 2026-05-18
+last_edited_by: agent_stanley
 ---
 
-# CLAUDE.md — Agentic-DNA
-<!-- v6.0 | 2026-04-03 -->
+# CLAUDE.md — aDNA
+<!-- v7.0 | 2026-05-18 -->
 
 ## Identity & Personality
 

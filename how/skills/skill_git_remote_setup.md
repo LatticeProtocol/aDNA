@@ -245,7 +245,7 @@ The receipt is committed in a follow-up `git commit` so the audit trail persists
 
 ### The aDNA template repo itself
 
-Per `adr_006_github_repo_rename_to_adna.md`, the template repo is `LatticeProtocol/adna` (lowercase, no `.aDNA` suffix) — **not** `<name>.aDNA` form. This is intentional: the template repo IS the convention's source, not a consumer of it. ADR-009 documents this as the canonical exception.
+Per `adr_006_github_repo_rename_to_adna.md` (amended 2026-05-18), the template repo is `LatticeProtocol/aDNA` (mixed-case canonical, no `.aDNA` suffix) — **not** `<name>.aDNA` form. This is intentional: the template repo IS the convention's source, not a consumer of it. ADR-009 documents this as the canonical exception. (The amendment supersedes an earlier lowercase target; URLs route case-insensitively so lowercase forms still resolve via 301.)
 
 **Skill behavior for the template repo**: not applicable — the template repo's remote is configured upstream by `LatticeProtocol`. Operators of the template repo do not run this skill.
 

@@ -28,38 +28,42 @@ Changelog entries are organized by **governance version** (primary heading). Sta
 
 ---
 
-## [v7.0] — YYYY-MM-DD
+## [v7.0] — 2026-05-18
 
 > Major **Governance** bump. **Standard track: no change** (stays at v2.2). Ratified by ADR-011 (semver discipline) at this tag.
-> **Date placeholder**: M06 (Governance v7.0 tag mission) fills in YYYY-MM-DD at tag execution; M03 Session 2 (2026-05-11) prepared this entry verbatim from M01 Obj 6 §1 pre-drafted skeleton + landed the bullets attributable to M03 (flatten + airlock stub + URL sweep + CI workflow updates + template `.gitignore` + outer-wrapper conversion). Bullets referencing M04/M05/M06/M07/M08a/M08b/M10 are forward-looking and will be verified by M06 at tag execution; some may consolidate or split per actual contributions.
 
 ### Added
-- **Repo flatten**: `.adna/` IS the git repo (no more `adna/.adna/` two-level structure). New clone target: `git clone https://github.com/LatticeProtocol/adna.git .adna` (per ADR-006). Symlink `lattice/.adna -> adna/.adna` removed. (M03)
+- **Repo flatten**: `.adna/` IS the git repo (no more `adna/.adna/` two-level structure). New clone target: `git clone https://github.com/LatticeProtocol/aDNA.git .adna` (per ADR-006; mixed-case canonical per 2026-05-18 amendment). Symlink `lattice/.adna -> adna/.adna` removed. (M03)
 - **`node.aDNA/` opt-in pattern**: Local-node operational inventory vault. Persona: Hestia. Forward-reference per ADR-004 from `node.aDNA/CLAUDE.md` to `aDNA.aDNA/how/campaigns/`. (M04)
+- **Cross-project routing hook** in `.adna/CLAUDE.md` §Agent Protocol §Startup Checklist (after step 9) — enables node.aDNA-aware fork routing; vault session-start agents check for `node.aDNA/` presence and route through the per-node operational vault before project-specific routing. (M04 S2; commit `e3b3bcc`)
+- **`HOME.md` template** — Workspace-router HOME page with 19+ `{{...}}` placeholder substitution points (vaults_table, hostname, operator, etc.); served by `skill_node_bootstrap_interview` Step 9 substitution engine. Sandbox-validated under M-LWX-01 verification matrix (9/9 gates PASS). (M-LWX mini-campaign; closed 2026-05-13)
+- **`skill_node_bootstrap_interview.md`** — 19-question hybrid bootstrap UX skill for `node.aDNA/` first-fork experience (purpose / user-info / stack / hardware / connections; ~4-7 min). Fills `MANIFEST.md` + `who/identity/identity_node.yaml` + `what/inventory/inventory_*.yaml` + `CHANGELOG.md` + HOME.md `{{VARS}}` from operator answers. (M-LWX-01; commit `8673383`)
+- **5 `node_operations` skills graduated to `.adna/` template**: `skill_inventory_refresh.md` + `skill_node_credentials_audit.md` + `skill_node_health_check.md` + `skill_update_all_vaults.md` (4 graduated from `node.aDNA@411660e` at `campaign_federation_beta_planning` M-H.1.5 1b; commit `03198f8`) + `skill_node_bootstrap_interview.md` (M-LWX-01). Each carries `graduated_from`/`graduated_at`/`graduated_via` provenance frontmatter. AGENTS.md updated with `node_operations` category row.
 - **`skill_vault_publish.md` (NEW)**: Vault → GitHub `git push` flow. Replaces ad-hoc `.publish-clone/` rsync workaround. (M05; ratified by ADR-010)
 - **`skill_git_remote_setup.md` (NEW)**: First-time `git remote add` + `gh repo create` configuration for fresh vaults. (M05)
 - **`skill_deploy.md` (NEW)**: Idempotent installer for the pre-push sanitization hook. (M05)
 - **`skill_publish_tarball.md` (NEW)**: Optional offline-shipping tarball flow. (M05)
+- **`skill_iii_setup.md` (NEW)**: Consumer-onboarding skill for adding an `iii/` wrapper to a new vault (federation_ref schema, `kind:` enum walkthrough, minimal vs full-extension shapes, downstream-safety check). Byte-identical to canonical at `III.aDNA/how/skills/`; backed by 5 live MB-1..MB-5 wrappers as worked precedents. (III Campaign B MB-6 publish; commit `c32930e`)
 - **Pre-push sanitization hook** (LAYER_CONTRACT §4 v0.1): 7 sanitization rules (path leakage / secret patterns / filename patterns / large binaries / frontmatter confidential / frontmatter draft / operator deny list). Installed via `skill_deploy`. (M05)
+- **Pre-push sanitization hook self-test fixtures + `--self-test` mode upgrade** — 8 fixtures (3 PASS-path + 5 FAIL-path covering R1 path leakage / R2 secret patterns / R3 filename patterns / R4 large binaries / R5-R7 frontmatter rules); hook `--self-test` mode upgraded from warn-and-skip stub to real validation logic (PASS 7/7). Verification-as-first-class deliverable (M05 AAR §Conceptual contributions #1). (M05 S2; commit `dfced67`)
 - **`how/airlock/AIRLOCK.md` stub** at template level — entry-path index for cross-graph agent traffic. Adoption is opt-in per vault. (M03; ratified by ADR-008)
-- **Naming convention codification** (ADR-009): `<name>.aDNA/` directory ↔ `<name>.aDNA.git` GitHub repo isomorphism; snake_case `<name>`; grandfathered exceptions documented. Renames are operator-discretionary; per-vault application is the v3 successor's scope. (M07)
+- **Naming convention codification** (ADR-009): `<name>.aDNA/` directory ↔ `<name>.aDNA.git` GitHub repo isomorphism; snake_case `<name>`; grandfathered exceptions documented. Renames are operator-discretionary; per-vault application is the v3-EC successor's scope. (ADR-009 ratified at M03 phase gate)
 - **Semver discipline ADR** (ADR-011): Codifies the two-track Major.Minor-only policy already practiced in this CHANGELOG. (M06; this entry IS the first release governed by it.)
 - **`template_workspace_claude.md`**: Workspace-router CLAUDE.md template extracted from the legacy outer `adna/CLAUDE.md` per ADR-007. Directly installable to `~/lattice/CLAUDE.md`. (M03)
-- **`LatticeScope.aDNA` planning campaign seed**: Campaign doc for the observability-platform vault (Prometheus persona). Seeded in this campaign's M10; vault construction is a successor campaign. (M10)
-- **CI workflow caller-usage URL update** to `LatticeProtocol/adna` (3 reusable workflows). (M03)
+- **CI workflow caller-usage URL update** to `LatticeProtocol/aDNA` (3 reusable workflows). (M03)
 - **Template-root `.gitignore`**: Created with v7.0 exclusion set (`deploy/`, `what/local/`, `how/local/`, `who/operators/`, `dist/`, `.publish-clone/`, `.publish-clone.bak/`, `private/`, `*.dryrun.log`, `*.tar.gz`). (M03; per Obj 5 audit §5 G-1)
 
 ### Changed
-- **GitHub repo rename**: `LatticeProtocol/Agentic-DNA` → `LatticeProtocol/adna` (per ADR-006). GitHub URL forwarding preserves existing clones; new clones use the canonical short-name URL.
-- **`adna/CLAUDE.md` (outer wrapper) → `template_workspace_claude.md`**: Repurposed as a template for the workspace router (per ADR-007); now lives at `.adna/how/templates/`.
+- **GitHub repo rename**: `LatticeProtocol/Agentic-DNA` → `LatticeProtocol/aDNA` (per ADR-006, amended 2026-05-18 to canonicalize mixed-case form matching realized GitHub state and the `<name>.aDNA/` directory-suffix convention). GitHub URL forwarding preserves existing clones; new clones use the canonical short-name URL. Operators with lowercase remotes may update at their own cadence via `git -C ~/lattice/.adna remote set-url origin https://github.com/LatticeProtocol/aDNA.git`. (M03; ADR-006 amendment 2026-05-18 M06 S2 D1)
+- **`adna/CLAUDE.md` (outer wrapper) → `template_workspace_claude.md`**: Repurposed as a template for the workspace router (per ADR-007); now lives at `.adna/how/templates/`. (M03)
 - **`deploy_manifest.yaml` location**: Moved from repo root to `.github/deploy_manifest.yaml`. `sync_includes:` simplified to root-level paths post-flatten. (M03; per Obj 5 audit §3 D-1)
 - **`prepare_for_onboarding.sh` location**: Moved from template root to `how/skills/l1_upgrade/` OR renamed to `prepare_for_l1_upgrade.sh` (operator-decided). The L1-specific script no longer pollutes top-level discoverability. (M03; per Obj 5 audit §4 P-1)
 - **`skill_workspace_upgrade.md`**: Symlink-creation step (lines 105-113) removed; flatten path replaces it. New §Step-3-alternative: install workspace router from `template_workspace_claude.md`. (M03)
-- **`skill_project_fork.md`**: Exclusion list expanded for post-flatten layout (`.git/`, `.github/`, `README.md`, `LICENSE`, `setup.sh`, `prepare_for_onboarding.sh`, `deploy_manifest.yaml`). Naming-convention warning added (per ADR-009): warn on non-conformant `<name>.aDNA/` forms. (M03 + M07)
+- **`skill_project_fork.md`**: Exclusion list expanded for post-flatten layout (`.git/`, `.github/`, `README.md`, `LICENSE`, `setup.sh`, `prepare_for_onboarding.sh`, `deploy_manifest.yaml`). Naming-convention warning added (per ADR-009): warn on non-conformant `<name>.aDNA/` forms. (M03)
 - **`skill_lattice_publish.md`**: Light v7.0 path-drift updates only — scope unchanged (latlab CLI registry publish). (M05; per ADR-010)
-- **CLAUDE.md frontmatter `version:`**: `"6.0"` → `"7.0"` (this entry is the change). `last_edited_by: agent_init` → `agent_stanley`. (§2 below)
-- **Skills inventory table in `.adna/CLAUDE.md`**: 13 → 16 rows (added `skill_workspace_upgrade.md` per Obj 1 §2 I-2; added `skill_vault_publish.md`, `skill_git_remote_setup.md`, `skill_deploy.md`, `skill_publish_tarball.md`). (M07)
-- **Standard track v2.2** is **unchanged**. Verified by S2 S4 reading pass (title at line 3 of `adna_standard.md` is canonical). The stale `*End of aDNA Universal Standard v2.0*` footer at line 1483 is corrected to `*End of aDNA Universal Standard v2.2*` as a one-line audit fix. (M07; per Obj 6 recommendation §2-D)
+- **CLAUDE.md frontmatter `version:`**: `"6.0"` → `"7.0"` (this entry is the change). `last_edited_by: agent_init` → `agent_stanley`. (M06; see Frontmatter section below)
+- **Skills inventory table in `.adna/CLAUDE.md`**: expanded to reflect the v7.0 skill family — `skill_workspace_upgrade.md` row added (Issue I-2 from M01 Obj 1 §2); 5 new publish-family skills added (`skill_vault_publish`, `skill_git_remote_setup`, `skill_deploy`, `skill_publish_tarball`); `skill_iii_setup.md`; 5 `node_operations` skills (`skill_node_bootstrap_interview` + `skill_inventory_refresh` + `skill_node_credentials_audit` + `skill_node_health_check` + `skill_update_all_vaults`). (M03 + M05 + M-LWX + III MB-6 + federation_beta_planning M-H.1.5)
+- **Standard track v2.2** is **unchanged**. Verified by S2 S4 reading pass (title at line 3 of `adna_standard.md` is canonical). The stale `*End of aDNA Universal Standard v2.0*` footer at line 1483 is corrected to `*End of aDNA Universal Standard v2.2*` as a one-line audit fix. (M06; per M01 Obj 6 recommendation §2-D)
 
 ### Deprecated
 - **`skill_workspace_init.md`** — was already deprecated in v6.0; **formally retired** in v7.0. File preserved per Standing Order #6 (archive, never delete). (M03)
@@ -72,16 +76,18 @@ Changelog entries are organized by **governance version** (primary heading). Sta
 - **`how/standard/skills/skill_publish_lattice.md`** (Spacemacs-local rsync skill) — retired upstream-via-v7.0; per-vault retirement is v3 successor scope. (Coordinated, not removed in this campaign.)
 
 ### Fixed
-- **`adna_standard.md` line 1483** — stale `*End of aDNA Universal Standard v2.0*` footer corrected to v2.2. (M07; one-line audit fix)
-- **CI workflow caller-usage URLs** — `LatticeProtocol/Agentic-DNA/.github/workflows/...@main` → `LatticeProtocol/adna/.github/workflows/...@main` in all three reusable workflows. (M03; per Obj 5 audit §2 W-1)
-- **`.adna/CLAUDE.md` skills inventory table** — added missing `skill_workspace_upgrade.md` row (Issue I-2 from Obj 1 §2). (M07)
-- **`adna/.adna/MANIFEST.md` outer-wrapper drift** — verify post-M03 that `Project Identity` section reflects `adna` (not "Agentic-DNA — A standalone knowledge architecture…"). (M07; cosmetic)
+- **`adna_standard.md` line 1483** — stale `*End of aDNA Universal Standard v2.0*` footer corrected to v2.2. (M06; one-line audit fix per M01 Obj 6 recommendation §2-D)
+- **CI workflow caller-usage URLs** — `LatticeProtocol/Agentic-DNA/.github/workflows/...@main` → `LatticeProtocol/aDNA/.github/workflows/...@main` in all three reusable workflows. (M03; per Obj 5 audit §2 W-1)
+- **`.adna/CLAUDE.md` skills inventory table** — added missing `skill_workspace_upgrade.md` row (Issue I-2 from M01 Obj 1 §2). (M03)
+- **`HOME.md` inline `{{TOKEN}}` comment rephrase** — 4 inline HTML-comment lines (40/54/65/104) rephrased to plain prose so `string.replace()`-based substitution (per `skill_node_bootstrap_interview.md` Step 9) does not naively expand placeholder tokens inside documentation comments. Fixes ~4.9KB of source-bloat in sandbox-rendered HOME.md (12,977 bytes → 8,069 bytes gold parity). End-user view unchanged (HTML comments are render-invisible); source-time bloat would have inflated git history + agent-context budget on every interview-driven fork. (M-LWX-03 Finding 1 fix; commit `202c9ec`)
+- **Skill path mismatch** — 4 v7.0 publish-family skills referenced pre-flatten `.adna/how/standard/hooks/...`. Post-M03-flatten, vaults are siblings of `.adna/` with vault-local hooks at `how/standard/hooks/...`. Fix: skills check canonical sibling path first, fall back to legacy `.adna/how/...` for compatibility. (M05 S2 defect; commit `dfced67`)
+- **R2 secret-pattern POSIX/PCRE quote-class bug** — All 7 secret patterns used `[\x27\x22]?` for the optional quote class, but POSIX `grep -E` interprets `\xNN` literally (PCRE-only). Fix: bash ANSI-C `$'\x27\x22'` quote forms. (M05 S2 defect; commit `dfced67`)
 
 ### Security
 - **Pre-push sanitization hook** (R1-R7): defense-in-depth against accidentally pushing local context, secrets, large binaries, or operator-restricted files. Installed via `skill_deploy`. Bypassable with `--no-verify` (operator-discretionary; not recommended). (M05)
 
 ### Migration
-- `upgrade_v6_to_v7.md` (M08a; ships pre-flatten so operators have it before structure breaks). Per-vault coordination memos drafted for ~17 vaults + external partners (Wilhelm Foundation, TAPP, Super League). Public announcement at GitHub release.
+- [`upgrade_v6_to_v7.md`](how/docs/upgrade_v6_to_v7.md) (M08a finalized 2026-05-11; M06 S2 copied to canonical template destination per M08a Items Deferred #14 fold-in). Ships in v7.0 template so operators have actionable migration steps the moment they pull. Per-vault coordination memos delivered to ~17 vaults + external partners (Wilhelm Foundation, TAPP, Super League). Public announcement at GitHub release.
 
 ### Standard track
 - **No change.** Standard stays at v2.2 (line 3 title canonical; line 1483 footer fix is editorial, not a version bump).

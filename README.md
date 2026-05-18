@@ -1,8 +1,10 @@
 <p align="center">
-  <img src=".adna/what/assets/banner.jpg" alt="Agentic-DNA — an open-source project template for humans and AI agents" width="100%">
+  <img src=".adna/what/assets/banner.jpg" alt="aDNA — an open-source project template for humans and AI agents" width="100%">
 </p>
 
-# Agentic-DNA
+# aDNA — Agentic DNA
+
+[![Governance v7.0](https://img.shields.io/badge/governance-v7.0-663399.svg)](https://github.com/LatticeProtocol/aDNA/releases/tag/v7.0) [![Standard v2.2](https://img.shields.io/badge/standard-v2.2-blue.svg)](https://github.com/LatticeProtocol/aDNA/blob/main/what/docs/adna_standard.md) [![Docs](https://img.shields.io/badge/docs-adna--docs.vercel.app-44cc11.svg)](https://adna-docs.vercel.app/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Obsidian](https://img.shields.io/badge/Obsidian-Compatible-7C3AED)](https://obsidian.md)
@@ -30,7 +32,7 @@ Most knowledge systems weren't designed with AI agents in mind. aDNA is.
 ```bash
 # Create the workspace + clone the template into .adna/ (hidden by convention)
 mkdir -p ~/lattice && cd ~/lattice
-git clone https://github.com/LatticeProtocol/adna.git .adna
+git clone https://github.com/LatticeProtocol/aDNA.git .adna
 
 # Bootstrap the workspace router from the template
 cp .adna/how/templates/template_workspace_claude.md CLAUDE.md
@@ -43,7 +45,7 @@ Claude reads the workspace router (`~/lattice/CLAUDE.md`) and walks you through 
 
 > For a faster clone, use `git clone --depth 1` — you'll get the latest template without full git history.
 >
-> **v7.0 flatten note**: post-aDNA-v7.0 (campaign_adna_v2_infrastructure 2026-05), the template clones directly into `.adna/` as a flat repo (no nested `adna/.adna/` layer). The workspace router (`~/lattice/CLAUDE.md`) is bootstrapped from the template via the `cp` step above. See the v6→v7 upgrade guide (post-M08b copy at `.adna/how/docs/upgrade_v6_to_v7.md`) for existing-operator migration.
+> **v7.0 flatten note**: post-aDNA-v7.0 (campaign_adna_v2_infrastructure 2026-05-18), the template clones directly into `.adna/` as a flat repo (no nested `adna/.adna/` layer). The workspace router (`~/lattice/CLAUDE.md`) is bootstrapped from the template via the `cp` step above. See the v6→v7 upgrade guide at [`.adna/how/docs/upgrade_v6_to_v7.md`](how/docs/upgrade_v6_to_v7.md) for existing-operator migration.
 
 ---
 
